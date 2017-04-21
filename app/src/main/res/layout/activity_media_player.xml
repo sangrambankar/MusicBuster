@@ -1,0 +1,204 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_opacity"
+    android:orientation="vertical">
+
+    <!--Toolbar-->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    />
+
+    <!-- Player Header Content-->
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        card_view:cardCornerRadius="1dp"
+        card_view:cardUseCompatPadding="false"
+        card_view:cardBackgroundColor="@color/black_opacity">
+
+       <RelativeLayout
+           android:id="@+id/header_content"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <!--Track Image-->
+           <de.hdodenhof.circleimageview.CircleImageView
+               android:id="@+id/track_image"
+               android:layout_width="300dp"
+               android:layout_height="300dp"
+               android:layout_marginTop="16dp"
+               android:layout_centerHorizontal="true"
+               app:civ_border_width="5dp"
+               app:civ_border_color="@color/white"
+               android:src="@mipmap/ic_launcher"
+           />
+
+           <!--Track Title-->
+           <TextView
+               android:id="@+id/track_title"
+               android:layout_below="@+id/track_image"
+               android:singleLine="true"
+               android:ellipsize="marquee"
+               android:marqueeRepeatLimit="marquee_forever"
+               android:focusable="true"
+               android:focusableInTouchMode="true"
+               android:scrollHorizontally="true"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+               android:textSize="23dp"
+               android:text="This is the name of the track"
+               android:gravity="center"
+               android:textStyle="bold"
+               android:textColor="@color/white"
+               android:fontFamily="sans-serif-light"
+               android:layout_centerHorizontal="true"
+               android:layout_marginRight="30dp"
+               android:layout_marginLeft="30dp"
+               android:layout_marginTop="16dp"
+           />
+
+           <!--Artist Name-->
+           <TextView
+               android:id="@+id/artist_name"
+               android:textSize="20dp"
+               android:layout_below="@+id/track_title"
+               android:layout_marginRight="30dp"
+               android:layout_marginLeft="30dp"
+               android:layout_marginBottom="16dp"
+               android:text="This is the artist's name"
+               android:gravity="center"
+               android:textColor="@color/white"
+               android:fontFamily="sans-serif-light"
+               android:layout_centerHorizontal="true"
+               android:layout_width="fill_parent"
+               android:layout_height="wrap_content"
+           />
+
+       </RelativeLayout>
+
+
+
+    </android.support.v7.widget.CardView>
+
+    <!--Progress Bar-->
+    <RelativeLayout
+        android:id="@+id/seekBarProgress"
+        android:layout_above="@+id/player_footer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <!-- Current Duration Label -->
+        <TextView
+            android:id="@+id/songCurrentDuration"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="02:43"
+            android:textSize="13dp"
+            android:gravity="left"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/blue_text"
+            android:fontFamily="sans-serif-light"
+            android:textStyle="bold"
+        />
+
+        <!-- Progress Bar/Seek bar -->
+        <SeekBar
+            android:id="@+id/songProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="fill_parent"
+            android:layout_marginRight="35dp"
+            android:layout_marginLeft="35dp"
+            android:progressTint="@color/playerDivider"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+        />
+
+        <!-- Total Duration Label -->
+        <TextView
+            android:id="@+id/songTotalDuration"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="03:15"
+            android:textSize="13dp"
+            android:gravity="right"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/blue_text"
+            android:fontFamily="sans-serif-light"
+            android:textStyle="bold"
+        />
+    </RelativeLayout>
+
+    <!--buttons control-->
+    <RelativeLayout
+        android:id="@+id/player_footer"
+        android:layout_alignParentBottom="true"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/button_repeat"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_repeat_grey600_48dp"
+            />
+
+            <ImageView
+                android:id="@+id/button_previous"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="30dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/button_previous"
+                android:layout_toRightOf="@+id/button_repeat"
+            />
+
+            <ImageView
+                android:id="@+id/button_play"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="30dp"
+                android:src="@mipmap/ic_av_play_arrow"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/button_previous"
+            />
+
+            <ImageView
+                android:id="@+id/button_next"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/button_next"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/button_play"
+            />
+
+            <ImageView
+                android:id="@+id/button_shuffle"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="30dp"
+                android:src="@mipmap/ic_shuffle_grey600_48dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/button_next"
+            />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

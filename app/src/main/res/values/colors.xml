@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#76BFEA</color>
+    <color name="colorPrimaryDark">#0D4A89</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="windowBackground">#FFFFFF</color>
+    <color name="navigationBarColor">#000000</color>
+
+    <color name="tabSelected">#FFFFFF</color>
+    <color name="tabUnselected">#acb4b8</color>
+    <color name="tabIndicator">#0f796b</color>
+    <color name="tabDivider">#dcfdfe</color>
+
+    <color name="black40PercentOpacity">#999999</color>
+    <color name="dividerLineColorGrey">#dcdcdc</color>
+    <color name="grey_text">#39393a</color>
+    <color name="white">#ffffff</color>
+    <color name="lightGrey">#B3B3B3</color>
+    <color name="noInternetOverlayAlpha">#99000000</color>
+    <color name="ballSpinLoaderColor">#147e95</color>
+
+    <color name="bgFooterPlayer">#fafafa</color>
+    <color name="playerDivider">#52b6ac</color>
+
+    <color name="item_pressed">#6633c4a2</color>
+
+    <color name="black_opacity">#D8000000</color>
+    <color name="blue_text">#009ACD</color>
+</resources>

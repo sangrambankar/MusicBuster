@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/tracks_list_item_active"
+    android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/track_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:src="@mipmap/ic_launcher"
+        />
+
+        <TextView
+            android:id="@+id/track_title"
+            android:maxLines="1"
+            android:textSize="14sp"
+            android:ellipsize="end"
+            android:text="@string/app_name"
+            android:layout_marginLeft="8sp"
+            android:layout_marginRight="5sp"
+            android:gravity="center_vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/grey_text"
+            android:fontFamily="sans-serif-light"
+            android:layout_toLeftOf="@+id/more_button"
+            android:layout_toRightOf="@+id/track_image"
+        />
+
+        <ImageView
+            android:id="@+id/more_button"
+            android:layout_width="40dp"
+            android:layout_height="40dip"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/more_options_ripple"
+            android:contentDescription="@string/app_name"
+            android:src="@mipmap/ic_navigation_more_vert"
+        />
+
+        <View
+            android:id="@+id/divider_rows"
+            style="@style/lineDivider"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/track_image"
+            android:layout_toRightOf="@+id/track_image"
+            android:layout_below="@+id/track_image"
+        />
+</RelativeLayout>
+
