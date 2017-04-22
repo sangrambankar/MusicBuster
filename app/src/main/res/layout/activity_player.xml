@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.blakky.musicbuster.views.InsetsPercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+
+    <LinearLayout
+        android:id="@+id/naming"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:transitionGroup="true">
+
+        <TextView
+            android:id="@+id/player_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:transitionName="@string/transition_name_duration"
+            tools:text="Title"/>
+
+        <Space
+            android:layout_width="@dimen/activity_horizontal_margin"
+            android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/player_artist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:transitionName="@string/transition_name_duration"
+            tools:text="Artist"/>
+
+    </LinearLayout>
+
+
+    <com.andremion.music.MusicCoverView
+        android:id="@+id/player_cover"
+        android:layout_width="match_parent"
+        android:layout_centerInParent="true"
+        android:scaleType="centerInside"
+        android:src="@drawable/nav_home"
+        android:transitionName="@string/transition_name_cover"
+        app:layout_heightPercent="35%"
+        app:shape="circle"
+        android:layout_height="wrap_content" />
+
+
+
+    <com.blakky.musicbuster.views.ProgressView
+        android:id="@+id/player_progress"
+        android:layout_centerInParent="true"
+        android:transitionName="@string/transition_name_progress"
+        app:layout_aspectRatio="100%"
+        app:layout_heightPercent="50%"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/player_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:onClick="onFabClick"
+        android:scaleType="center"
+        android:src="@mipmap/ic_av_pause"
+        android:transitionName="@string/transition_name_fab"/>
+
+    <Space
+        android:id="@+id/timers_anchor"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/player_cover"
+        android:layout_centerHorizontal="true"
+        app:layout_widthPercent="25%"
+        android:layout_width="wrap_content" />
+
+    <TextView
+        android:id="@+id/player_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/timers_anchor"
+        android:layout_toStartOf="@id/timers_anchor"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:transitionName="@string/transition_name_time"
+        tools:text="02:30"/>
+
+    <TextView
+        android:id="@+id/player_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/timers_anchor"
+        android:layout_toEndOf="@id/timers_anchor"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:transitionName="@string/transition_name_duration"
+        tools:text="04:30"/>
+
+
+    <LinearLayout
+        android:id="@+id/player_controls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:transitionGroup="true"
+        app:layout_marginBottomPercent="5%">
+
+        <ImageView
+            android:id="@+id/player_repeat"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_repeat_black_48dp"/>
+
+        <ImageView
+            android:id="@+id/player_rewind"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_fast_rewind_black_48dp"/>
+
+        <ImageView
+            android:id="@+id/player_forward"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_fast_forward_black_48dp"/>
+
+        <ImageView
+            android:id="@+id/player_shuffle"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_shuffle_black_48dp"/>
+
+    </LinearLayout>
+
+</com.blakky.musicbuster.views.InsetsPercentRelativeLayout>
