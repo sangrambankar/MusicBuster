@@ -7,14 +7,6 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <!--Toolbar-->
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        />
 
     <LinearLayout
         android:id="@+id/naming"
@@ -28,8 +20,9 @@
             android:id="@+id/player_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:transitionName="@string/transition_name_duration"
+            android:layout_gravity="center_vertical"
             tools:text="Title"/>
 
         <Space
@@ -41,7 +34,8 @@
             android:id="@+id/player_artist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:layout_gravity="center_vertical"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:transitionName="@string/transition_name_duration"
             tools:text="Artist"/>
 

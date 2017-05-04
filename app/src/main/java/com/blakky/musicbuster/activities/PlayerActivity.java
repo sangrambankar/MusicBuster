@@ -7,7 +7,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,7 +20,6 @@ import com.blakky.musicbuster.models.STrack;
 import com.blakky.musicbuster.views.ProgressView;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
-import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -42,22 +40,20 @@ public class PlayerActivity extends AppCompatActivity{
     @BindView(R.id.player_cover)
     MusicCoverView mCoverView;
 
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
 
     @BindView(R.id.player_fab)
     FloatingActionButton mPlay;
 
-    @BindView(R.id.button_repeat)
+    @BindView(R.id.player_repeat)
     ImageView mRepeatButton;
 
-    @BindView(R.id.button_shuffle)
+    @BindView(R.id.player_shuffle)
     ImageView mShuffleButton;
 
-    @BindView(R.id.track_title)
+    @BindView(R.id.player_title)
     TextView mTrackTitle;
 
-    @BindView(R.id.artist_name)
+    @BindView(R.id.player_artist)
     TextView mArtistName;
 
     @BindView(R.id.player_time)
@@ -74,18 +70,19 @@ public class PlayerActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
         ButterKnife.bind(this);
 
         mCoverView.setCallbacks(new MusicCoverView.Callbacks() {
             @Override
             public void onMorphEnd(MusicCoverView coverView) {
-                animateMusicCover(currentPlaybackState);
+                animateMusicCover();
             }
 
             @Override
             public void onRotateEnd(MusicCoverView coverView) {
-                animateMusicCover(currentPlaybackState);
+                animateMusicCover();
             }
         });
     }
@@ -98,8 +95,8 @@ public class PlayerActivity extends AppCompatActivity{
 
     @Override
     protected void onResume(){
+        super.onResume();
         setCellValues();
-        setUpToolbar();
         seekBarProgress();
     }
     @Override
@@ -115,7 +112,7 @@ public class PlayerActivity extends AppCompatActivity{
         super.onStop();
     }
 
-    @OnClick(R.id.button_repeat)
+    @OnClick(R.id.player_repeat)
     public void onRepeat(){
         MusicBusterActivity.mServiceConnection.getService().onRepeatSong();
         if(MusicBusterActivity.mServiceConnection.getService().isRepeatSong()){
@@ -133,21 +130,22 @@ public class PlayerActivity extends AppCompatActivity{
         if(MusicBusterActivity.mServiceConnection.getService().mState == Constants.State.PlAYING){
             MusicBusterActivity.mServiceConnection.getService().pause();
             mPlay.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.mipmap.ic_av_play_arrow));
-            mCoverView.start();
+            mCoverView.stop();
         }else{
             MusicBusterActivity.mServiceConnection.getService().start();
             mPlay.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.mipmap.ic_av_pause));
-            mCoverView.stop();
+            mCoverView.start();
         }
     }
 
-    @OnClick(R.id.button_next)
+    @OnClick(R.id.player_forward)
     public void onNext(){
         MusicBusterActivity.mServiceConnection.getService().nextSong();
         setCellValues();
+        seekBarProgress();
     }
 
-    @OnClick(R.id.button_shuffle)
+    @OnClick(R.id.player_shuffle)
     public void onShuffle(){
         MusicBusterActivity.mServiceConnection.getService().onShuffleSong();
         if(MusicBusterActivity.mServiceConnection.getService().isShuffleSong()){
@@ -164,6 +162,7 @@ public class PlayerActivity extends AppCompatActivity{
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventBusUpdateValues(ITrack currentSTrack){
         setCellValues();
+        seekBarProgress();
     }
 
     private void setCellValues(){
@@ -172,17 +171,18 @@ public class PlayerActivity extends AppCompatActivity{
         setTrackTitle(MusicBusterActivity.mServiceConnection.getService().getCurrentTrack().getTitle());
         setIcons();
         setTrackArtist(MusicBusterActivity.mServiceConnection.getService().getCurrentTrack());
+        mCoverView.start();
     }
     private void setTrackImage(final String urlOrPath, final ITrack track){
         Preconditions.checkNotNull(mCoverView);
         if (!Strings.isNullOrEmpty(urlOrPath)) {
             if(track instanceof STrack){
-                Picasso.with(getApplicationContext()).load(urlOrPath).placeholder(R.mipmap.ic_launcher).into(mCoverView);
+                //Picasso.with(getApplicationContext()).load(R.drawable.nav_home).placeholder(R.drawable.nav_home).into(mCoverView);
             }else if(track instanceof DTrack){
                 mCoverView.setImageBitmap(BitmapFactory.decodeFile(urlOrPath));
             }
         } else {
-            mCoverView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.mipmap.ic_launcher));
+            mCoverView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.nav_home));
         }
     }
 
@@ -217,13 +217,6 @@ public class PlayerActivity extends AppCompatActivity{
             mRepeatButton.setImageResource(R.mipmap.ic_repeat_black_48dp);
         }else{
             mRepeatButton.setImageResource(R.mipmap.ic_repeat_grey600_48dp);
-        }
-    }
-
-    private void setUpToolbar(){
-        setSupportActionBar(mToolbar);
-        if(getSupportActionBar() != null){
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
 
@@ -263,8 +256,8 @@ public class PlayerActivity extends AppCompatActivity{
         }
     }
 
-    private void animateMusicCover(int playbackState) {
-        if (playbackState == PlaybackStateCompat.STATE_PLAYING) {
+    private void animateMusicCover() {
+        if (MusicBusterActivity.mServiceConnection.getService().mState == Constants.State.PlAYING) {
             mCoverView.start();
         } else {
             mCoverView.stop();

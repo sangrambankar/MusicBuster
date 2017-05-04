@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 
-import com.blakky.musicbuster.activities.MediaPlayerActivity;
+import com.blakky.musicbuster.activities.PlayerActivity;
 import com.blakky.musicbuster.services.MediaPlayerService;
 import com.blakky.musicbuster.views.FooterPlayerView;
 import com.google.common.base.Preconditions;
@@ -39,7 +39,7 @@ public class ActionFooterPlayerListener implements FooterPlayerView.IFooterPlaye
     @Override
     public void onClick() {
         if(mActivity.get() != null){
-           mActivity.get().startActivityForResult(new Intent(mActivity.get(), MediaPlayerActivity.class), UPDATE_FOOTER);
+           mActivity.get().startActivityForResult(new Intent(mActivity.get(), PlayerActivity.class), UPDATE_FOOTER);
         }
     }
 }
