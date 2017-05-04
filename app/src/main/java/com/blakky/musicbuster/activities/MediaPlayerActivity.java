@@ -29,6 +29,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static android.R.attr.versionCode;
+import static android.R.attr.versionName;
 import static com.blakky.musicbuster.helpers.Constants.UPDATE_FOOTER;
 
 

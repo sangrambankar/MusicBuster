@@ -24,8 +24,12 @@
     <color name="bgFooterPlayer">#fafafa</color>
     <color name="playerDivider">#52b6ac</color>
 
+    <color name="bgFooterPlayerOpacity">#9576BFEA</color>
+
     <color name="item_pressed">#6633c4a2</color>
 
     <color name="black_opacity">#D8000000</color>
     <color name="blue_text">#009ACD</color>
+    <color name="colorPlayPause">#fd4848</color>
+    <color name="colorPlay">#fd4848</color>
 </resources>

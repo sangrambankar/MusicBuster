@@ -35,6 +35,9 @@ android {
         buildConfigField "String", "API_KEY", loadKeyFromLocalProperties()
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+
+
     buildTypes {
         release {
             minifyEnabled false
@@ -45,6 +48,13 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+android {
+    defaultConfig {
+        renderscriptTargetApi 22
+        renderscriptSupportModeEnabled true
     }
 }
 
@@ -60,6 +70,9 @@ dependencies {
 
 
     testCompile 'junit:junit:4.12'
+
+    //Blurry
+    compile 'ru.egslava:blurredview:1.0'
 
 
     //ButterKnife

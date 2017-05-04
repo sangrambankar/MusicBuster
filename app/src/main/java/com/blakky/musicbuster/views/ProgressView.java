@@ -9,12 +9,11 @@ import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.blakky.musicbuster.R;
 
-/**
- * Created by sangrambankar on 4/21/17.
- */
+
 
 public class ProgressView extends View {
 
@@ -33,7 +32,7 @@ public class ProgressView extends View {
 
     private int mProgress;
     private int mMax;
-    private float mMorph;
+    private float mMorph = 1;
 
     public ProgressView(Context context) {
         this(context, null, 0);
@@ -219,7 +218,7 @@ public class ProgressView extends View {
         int progress;
 
         /**
-         * Constructor called from {@link }
+         * Constructor called from {@link ProgressBar#onSaveInstanceState()}
          */
         SavedState(Parcelable superState) {
             super(superState);

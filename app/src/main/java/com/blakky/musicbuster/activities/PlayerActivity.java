@@ -7,6 +7,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +22,7 @@ import com.blakky.musicbuster.models.STrack;
 import com.blakky.musicbuster.views.ProgressView;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
+import com.squareup.picasso.Picasso;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -40,6 +43,11 @@ public class PlayerActivity extends AppCompatActivity{
     @BindView(R.id.player_cover)
     MusicCoverView mCoverView;
 
+    @BindView(R.id.player_background)
+    ImageView mPlayerbackground;
+
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
 
     @BindView(R.id.player_fab)
     FloatingActionButton mPlay;
@@ -98,6 +106,7 @@ public class PlayerActivity extends AppCompatActivity{
         super.onResume();
         setCellValues();
         seekBarProgress();
+        setUpToolbar();
     }
     @Override
     protected void onPause(){
@@ -112,6 +121,15 @@ public class PlayerActivity extends AppCompatActivity{
         super.onStop();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     @OnClick(R.id.player_repeat)
     public void onRepeat(){
         MusicBusterActivity.mServiceConnection.getService().onRepeatSong();
@@ -135,6 +153,7 @@ public class PlayerActivity extends AppCompatActivity{
             MusicBusterActivity.mServiceConnection.getService().start();
             mPlay.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.mipmap.ic_av_pause));
             mCoverView.start();
+            seekBarProgress();
         }
     }
 
@@ -142,8 +161,17 @@ public class PlayerActivity extends AppCompatActivity{
     public void onNext(){
         MusicBusterActivity.mServiceConnection.getService().nextSong();
         setCellValues();
-        seekBarProgress();
+        setUpToolbar();
     }
+
+
+    @OnClick(R.id.player_rewind)
+    public void onPrevious(){
+        MusicBusterActivity.mServiceConnection.getService().backSong();
+        setCellValues();
+        setUpToolbar();
+    }
+
 
     @OnClick(R.id.player_shuffle)
     public void onShuffle(){
@@ -162,7 +190,13 @@ public class PlayerActivity extends AppCompatActivity{
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventBusUpdateValues(ITrack currentSTrack){
         setCellValues();
-        seekBarProgress();
+    }
+
+    private void setUpToolbar(){
+        setSupportActionBar(mToolbar);
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     private void setCellValues(){
@@ -177,7 +211,7 @@ public class PlayerActivity extends AppCompatActivity{
         Preconditions.checkNotNull(mCoverView);
         if (!Strings.isNullOrEmpty(urlOrPath)) {
             if(track instanceof STrack){
-                //Picasso.with(getApplicationContext()).load(R.drawable.nav_home).placeholder(R.drawable.nav_home).into(mCoverView);
+                Picasso.with(getApplicationContext()).load(urlOrPath).fit().centerInside().placeholder(R.drawable.nav_home).into(mCoverView);
             }else if(track instanceof DTrack){
                 mCoverView.setImageBitmap(BitmapFactory.decodeFile(urlOrPath));
             }
@@ -189,6 +223,7 @@ public class PlayerActivity extends AppCompatActivity{
     private void setTrackTitle(final String name){
         Preconditions.checkNotNull(mTrackTitle);
         mTrackTitle.setText(name);
+        mTrackTitle.setSelected(true);
     }
 
     private void setTrackArtist(final ITrack track){
