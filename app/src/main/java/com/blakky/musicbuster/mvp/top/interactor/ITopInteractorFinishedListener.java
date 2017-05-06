@@ -1,8 +1,6 @@
 package com.blakky.musicbuster.mvp.top.interactor;
 
-import com.blakky.musicbuster.models.STrack;
-
-import java.util.List;
+import com.blakky.musicbuster.models.TopChartCollection;
 
 /**
  * Created by sangrambankar on 4/6/17.
@@ -10,9 +8,9 @@ import java.util.List;
 public interface ITopInteractorFinishedListener {
     /**
      *
-     * @param STracks list of songs.
+     * @param charts list of songs.
      */
-    void onNetworkSuccess(final List<STrack> STracks);
+    void onNetworkSuccess(final TopChartCollection charts);
 
     /**
      *

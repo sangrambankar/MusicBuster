@@ -3,13 +3,13 @@ package com.blakky.musicbuster.mvp.top.presenter;
 import android.support.annotation.NonNull;
 
 import com.blakky.musicbuster.models.STrack;
+import com.blakky.musicbuster.models.TopChartCollection;
 import com.blakky.musicbuster.mvp.top.interactor.ITopInteractorFinishedListener;
 import com.blakky.musicbuster.mvp.top.interactor.TopInteractor;
 import com.blakky.musicbuster.mvp.top.view.ITopView;
 import com.google.common.base.Preconditions;
 
 import java.lang.ref.WeakReference;
-import java.util.List;
 
 
 /**
@@ -35,9 +35,9 @@ public class TopPresenter implements ITopPresenter, ITopInteractorFinishedListen
     }
 
     @Override
-    public void onNetworkSuccess(@NonNull final List<STrack> STracks) {
-        Preconditions.checkNotNull(STracks, "List of STracks cannot be null");
-        if(mView.get() != null) mView.get().onSearchLoadedSuccess(STracks);
+    public void onNetworkSuccess(@NonNull final TopChartCollection chart) {
+        Preconditions.checkNotNull(chart, "List of STracks cannot be null");
+        if(mView.get() != null) mView.get().onSearchLoadedSuccess(chart);
     }
 
     @Override

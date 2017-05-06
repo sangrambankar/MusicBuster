@@ -1,7 +1,5 @@
 package com.blakky.musicbuster.mvp.search.interactor;
 
-import android.util.Log;
-
 import com.blakky.musicbuster.helpers.Constants;
 import com.blakky.musicbuster.models.CollectionSTrack;
 import com.blakky.musicbuster.restclient.IRestClient;
@@ -41,14 +39,11 @@ public class SearchInteractor {
                     collectionSTrack -> {
                         //if successful, notifies to the presenter so that it can get a list of tracks.
                         filterItemsFromList(collectionSTrack);
-
                     },
 
                     Throwable -> {
                         //if fails, gets the error message from the server and then notifies to the presenter.
                         mListener.onNetworkFailure(Throwable);
-                        Log.d("SearchInteractor",""+Throwable);
-
                     }
             );
     }
@@ -72,8 +67,6 @@ public class SearchInteractor {
     }
         // Filter those tracks that don't have either an image or stream url valid.
     private void filterItemsFromList(final CollectionSTrack collectionSTrack){
-        Log.d("SearchInteractor coll",""+collectionSTrack.getCollection().get(0).getId());
-
         Observable.from(collectionSTrack.getCollection())
             .filter(item -> !Strings.isNullOrEmpty(item.getArtwork_url()) && !Strings.isNullOrEmpty(item.getId()))
             .toList().subscribe(

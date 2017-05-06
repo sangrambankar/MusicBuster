@@ -1,13 +1,9 @@
 package com.blakky.musicbuster.mvp.top.interactor;
 
-import com.blakky.musicbuster.models.STrack;
+import com.blakky.musicbuster.models.TopChartCollection;
 import com.blakky.musicbuster.restclient.IRestClient;
 import com.blakky.musicbuster.restclient.RestUtils;
-import com.google.common.base.Strings;
 
-import java.util.List;
-
-import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -32,9 +28,9 @@ public class TopInteractor {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                    tracks -> {
+                    topChartCollection -> {
                         //if successful, notifies to the presenter so that it can get a list of tracks.
-                        filterItemsFromList(tracks);
+                        filterItemsFromList(topChartCollection);
 
                     },
 
@@ -46,14 +42,9 @@ public class TopInteractor {
     }
 
     // Filter those tracks that don't have either an image or stream url valid.
-    private void filterItemsFromList(final List<STrack> trackList){
-        Observable.from(trackList)
-            .filter(item -> !Strings.isNullOrEmpty(item.getArtwork_url()) && !Strings.isNullOrEmpty(item.getStream_url()))
-            .toList().subscribe(
-                items -> {
-                    mListener.onNetworkSuccess(items);
-                }
-             );
+    private void filterItemsFromList(final TopChartCollection collectionSTrack){
+        mListener.onNetworkSuccess(collectionSTrack);
+
     }
 
 }

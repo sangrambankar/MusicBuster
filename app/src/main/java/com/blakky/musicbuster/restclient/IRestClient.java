@@ -3,8 +3,7 @@ package com.blakky.musicbuster.restclient;
 import com.blakky.musicbuster.models.BufferTrack;
 import com.blakky.musicbuster.models.CollectionSTrack;
 import com.blakky.musicbuster.models.STrack;
-
-import java.util.List;
+import com.blakky.musicbuster.models.TopChartCollection;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -23,7 +22,7 @@ public interface IRestClient {
      * @param keyword Song or Artist that users put in the search view.
      * @param offset  Amount of tracks in a page.
      * @param client_id Developer ID that allows make use of the SoundCloud Api.
-     * @return an {@link rx.Observable} with a response mapped to {@link java.util.List} of {@link STrack}.
+     * @return an {@link rx.Observable} with a response mapped to {@link CollectionSTrack}.
      */
     @GET(RestUtils.TRACK_URL)
     Observable<CollectionSTrack> getTracks(@Query(RestUtils.QUERY) String keyword,
@@ -33,11 +32,12 @@ public interface IRestClient {
 
     /**
      * Gets a list of top tracks.
+     * @param genre Genre top chart from the SoundCloud Api.
      * @param client_id Developer ID that allows make use of the SoundCloud Api.
-     * @return an {@link rx.Observable} with a response mapped to {@link java.util.List} of {@link STrack}.
+     * @return an {@link rx.Observable} with a response mapped to {@link CollectionSTrack}.
      */
     @GET(RestUtils.TOP_URL)
-    Observable<List<STrack>> getTopTracks(@Query(RestUtils.GENRE) String genre, @Query(RestUtils.ID) String client_id);
+    Observable<TopChartCollection> getTopTracks(@Query(RestUtils.GENRE) String genre, @Query(RestUtils.ID) String client_id);
 
     /**
      * Gets a url of  tracks.

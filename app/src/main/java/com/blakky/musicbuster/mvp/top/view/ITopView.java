@@ -1,8 +1,6 @@
 package com.blakky.musicbuster.mvp.top.view;
 
-import com.blakky.musicbuster.models.STrack;
-
-import java.util.List;
+import com.blakky.musicbuster.models.TopChartCollection;
 
 
 /**
@@ -12,9 +10,9 @@ public interface ITopView {
 
     /**
      * Displays a ListView with a list of STracks Top 50
-     * @param STracks list of songs/audios.
+     * @param charts list of songs/audios.
      */
-    void onSearchLoadedSuccess(final List<STrack> STracks);
+    void onSearchLoadedSuccess(final TopChartCollection charts);
 
     /**
      * Shows an ImageView and two TextViews
