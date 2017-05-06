@@ -14,7 +14,10 @@ import android.support.annotation.Nullable;
 
 import com.blakky.musicbuster.helpers.Constants;
 import com.blakky.musicbuster.helpers.Constants.State;
+import com.blakky.musicbuster.models.BufferTrack;
 import com.blakky.musicbuster.models.ITrack;
+import com.blakky.musicbuster.mvp.search.interactor.IUrlTrackInteractorListener;
+import com.blakky.musicbuster.mvp.search.interactor.SearchInteractor;
 import com.google.common.base.Preconditions;
 
 import org.greenrobot.eventbus.EventBus;
@@ -27,7 +30,7 @@ import java.util.Random;
 /**
  * Service that handles Media Player and performs operations like play, pause, release, etc.
  */
-public class MediaPlayerService extends Service implements OnPreparedListener, OnCompletionListener, OnErrorListener {
+public class MediaPlayerService extends Service implements OnPreparedListener, OnCompletionListener, OnErrorListener, IUrlTrackInteractorListener {
 
     private List<ITrack> mTracks;
     private int mPosition = -1;
@@ -127,6 +130,12 @@ public class MediaPlayerService extends Service implements OnPreparedListener, O
     }
 
     private void playTrack(final int position){
+        SearchInteractor interactor = new SearchInteractor(this);
+        interactor.getURLTrack(mTracks.get(position).getId());
+    }
+
+    @Override
+    public void onNetworkSuccess(BufferTrack bufferTrack) {
         terminatePreviousThread();
         mThread = new Thread(){ // To make sure it's not doing too much work on the Main Thread.
             @Override
@@ -135,7 +144,7 @@ public class MediaPlayerService extends Service implements OnPreparedListener, O
                 try {
                     createMediaPlayerIfNeeded();
                     mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                    mPlayer.setDataSource(mTracks.get(position).getUrl());
+                    mPlayer.setDataSource(bufferTrack.getHttp_mp3_128_url());
                     mPlayer.prepareAsync(); // Prepares, but does not block the UI thread.
                     EventBus.getDefault().post(Constants.FOOTER_PLAYER_VISIBLE);
                 } catch (IllegalStateException | IOException e) {
@@ -145,6 +154,12 @@ public class MediaPlayerService extends Service implements OnPreparedListener, O
         };
         mThread.start();
     }
+
+    @Override
+    public void onNetworkFailure(Throwable message) {
+
+    }
+
 
     public ITrack getCurrentTrack(){
         if(mTracks == null){

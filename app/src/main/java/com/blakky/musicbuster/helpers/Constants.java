@@ -12,7 +12,7 @@ public class Constants {
     public static final int OFFSET = 0;
     public static final int NUMBER_OF_ITEMS = 20;
     public static final int TRIGGER_FROM_END = 10;
-    public static final String CREDENTIALS = "?client_id=" + RestUtils.API_KEY;
+    public static final String CREDENTIALS = "/streams?client_id=" + RestUtils.API_KEY;
     public static final String TRACK_POSITION = "position";
     public static final boolean FOOTER_PLAYER_VISIBLE = true;
     public static final String TRACK_TITLE = "trackTitle";

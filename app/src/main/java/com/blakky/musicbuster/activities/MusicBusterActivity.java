@@ -15,6 +15,7 @@ import android.view.MenuItem;
 
 import com.blakky.musicbuster.R;
 import com.blakky.musicbuster.fragments.StreamFragment;
+import com.blakky.musicbuster.fragments.TopFragment;
 import com.blakky.musicbuster.helpers.NetworkHelper;
 import com.blakky.musicbuster.helpers.ServiceHelper;
 import com.blakky.musicbuster.helpers.ViewHelper;
@@ -171,6 +172,19 @@ public class MusicBusterActivity extends AppCompatActivity
             searchView.setIconified(true);
             searchView.clearFocus();
             searchViewItem.collapseActionView();
+        }else if(tag.equals("top")){
+            FragmentManager manager = getSupportFragmentManager();
+            TopFragment newFragment = new TopFragment();
+
+            manager.beginTransaction()
+                    .setCustomAnimations(R.anim.slide_left,
+                            R.anim.slide_right,
+                            R.anim.slide_left,
+                            R.anim.slide_right)
+                    .replace(R.id.fragment_container, newFragment, tag)
+                    .show(newFragment)
+                    .addToBackStack(null)
+                    .commitAllowingStateLoss();
         }
 
     }
@@ -182,7 +196,8 @@ public class MusicBusterActivity extends AppCompatActivity
         int id = item.getItemId();
 
         switch (id){
-            case R.id.nav_camera:
+            case R.id.nav_top:
+                showFragments("top");
                 break;
             case R.id.nav_gallery:
                 break;

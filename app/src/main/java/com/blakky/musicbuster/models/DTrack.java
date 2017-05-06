@@ -11,6 +11,7 @@ import com.blakky.musicbuster.helpers.Constants;
  */
 
 public class DTrack implements ITrack{
+    private String id;
     private String title;
     private String image;
     private String url;
@@ -22,6 +23,15 @@ public class DTrack implements ITrack{
     }
 
     @Override
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @Override
     public String getTitle() {
         return title;
     }
@@ -29,11 +39,6 @@ public class DTrack implements ITrack{
     @Override
     public String getImage() {
         return image;
-    }
-
-    @Override
-    public String getUrl() {
-        return url;
     }
 
     @Override

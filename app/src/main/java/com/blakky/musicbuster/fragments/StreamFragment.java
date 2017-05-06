@@ -78,7 +78,7 @@ public class StreamFragment extends Fragment implements ISearchView{
 
     @Override
     public void onSearchLoadedSuccess(List<STrack> tracks) {
-        Toast.makeText(getActivity(),"Q"+tracks.get(0).getTitle(),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(),"Q"+tracks.get(0).getTitle(),Toast.LENGTH_SHORT).show();
         if(mListTracksAdapter == null){
             mListTracksAdapter = new TracksListAdapter(getActivity(), tracks);
             populateList(mListTracksAdapter);

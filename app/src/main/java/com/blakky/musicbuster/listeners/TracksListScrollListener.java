@@ -48,8 +48,8 @@ public class TracksListScrollListener implements IDetectScrollListener {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        tracks -> {
-                            mTrackListAdapter.addAll(tracks);
+                        collectionSTrack -> {
+                            mTrackListAdapter.addAll(collectionSTrack.getCollection());
                             mTrackListAdapter.notifyDataSetChanged();
                             mNextLimit++; // To satisfy the condition above (mPreviousLimit != mNextLimit)
                         },

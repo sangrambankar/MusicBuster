@@ -97,6 +97,7 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
 
     // RxAndroid and RxJava
     compile 'io.reactivex:rxandroid:1.2.0'

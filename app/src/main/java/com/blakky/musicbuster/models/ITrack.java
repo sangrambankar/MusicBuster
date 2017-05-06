@@ -6,6 +6,11 @@ package com.blakky.musicbuster.models;
 
 public interface ITrack {
     /**
+     * Gets the Track's id that will be played.
+     * @return The name of the track.
+     */
+    String getId();
+    /**
      * Gets the Track's title that will be played.
      * @return The name of the track.
      */
@@ -16,12 +21,6 @@ public interface ITrack {
      * @return Either a url or path.
      */
     String getImage();
-
-    /**
-     * Gets the streaming url or path
-     * @return Either a url or path.
-     */
-    String getUrl();
 
     /**
      * @return Jpg format

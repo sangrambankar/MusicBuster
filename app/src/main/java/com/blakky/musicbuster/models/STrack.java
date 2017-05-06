@@ -12,12 +12,21 @@ import com.blakky.musicbuster.helpers.Constants;
 
 public class STrack implements ITrack {
 
+    private String id;
     private String title;
     private String genre;
     private String duration;
     private String artwork_url;
-    private String stream_url;
     private String download_url;
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     /**
      *
@@ -93,17 +102,8 @@ public class STrack implements ITrack {
      *    link to 128kbs mp3 stream.
      */
     public String getStream_url() {
-        return stream_url + Constants.CREDENTIALS;
+        return this.id+Constants.CREDENTIALS;
     }
-
-    /**
-     *
-     * @param stream_url
-     */
-    public void setStream_url(String stream_url) {
-        this.stream_url = stream_url;
-    }
-
 
     /**
      *
@@ -127,10 +127,6 @@ public class STrack implements ITrack {
         return getArtwork_url();
     }
 
-    @Override
-    public String getUrl() {
-        return getStream_url();
-    }
 
     @Override
     public String getJPG(){
