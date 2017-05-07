@@ -47,6 +47,10 @@ public class MusicBusterActivity extends AppCompatActivity
     @BindView(R.id.footer_player)
     FooterPlayerView mFooterPlayer;
 
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawer;
+
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -112,7 +116,6 @@ public class MusicBusterActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -198,6 +201,12 @@ public class MusicBusterActivity extends AppCompatActivity
         switch (id){
             case R.id.nav_top:
                 showFragments("top");
+                break;
+            case R.id.nav_search:
+                searchViewItem.expandActionView();
+                if (drawer.isDrawerOpen(GravityCompat.START)) {
+                    drawer.closeDrawer(GravityCompat.START);
+                }
                 break;
             case R.id.nav_gallery:
                 break;

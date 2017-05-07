@@ -30,8 +30,8 @@ public class TopPresenter implements ITopPresenter, ITopInteractorFinishedListen
     }
 
     @Override
-    public void searchTopTrack() {
-        mInteractor.loadTopTracks();
+    public void searchTopTrack(String genre) {
+        mInteractor.loadTopTracks(genre);
     }
 
     @Override

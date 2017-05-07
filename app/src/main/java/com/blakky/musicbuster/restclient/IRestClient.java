@@ -34,7 +34,7 @@ public interface IRestClient {
      * Gets a list of top tracks.
      * @param genre Genre top chart from the SoundCloud Api.
      * @param client_id Developer ID that allows make use of the SoundCloud Api.
-     * @return an {@link rx.Observable} with a response mapped to {@link CollectionSTrack}.
+     * @return an {@link rx.Observable} with a response mapped to {@link TopChartCollection}.
      */
     @GET(RestUtils.TOP_URL)
     Observable<TopChartCollection> getTopTracks(@Query(RestUtils.GENRE) String genre, @Query(RestUtils.ID) String client_id);

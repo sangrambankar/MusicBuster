@@ -7,6 +7,10 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="Top 50" />
         <item
+            android:id="@+id/nav_search"
+            android:icon="@android:drawable/ic_menu_search"
+            android:title="Search" />
+        <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
             android:title="New and Hot" />

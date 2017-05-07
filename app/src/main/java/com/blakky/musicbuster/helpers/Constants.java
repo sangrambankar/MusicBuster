@@ -22,6 +22,7 @@ public class Constants {
     public static final String DIR_TRACKS = "/Mp3 Tracks/tracks";
     public static final String JPG = ".jpg";
     public static final String MP3 = ".mp3";
+    public static final String EXTRA_GENRE = "genre";
     public static final int REMOVE_TRACK = 1;
     public static final String IS_PLAYING = "isPlaying";
     public static final int UPDATE_FOOTER = 1;

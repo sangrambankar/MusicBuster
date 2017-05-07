@@ -8,5 +8,5 @@ public interface ITopPresenter {
     /** Calls the API to search for the top charts that the user has typed.
      *  Song or Artist that users put in the search view.
      */
-    void searchTopTrack();
+    void searchTopTrack(String genre);
 }

@@ -17,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RestUtils {
 
     public static final String QUERY = "q";
-    public static final String GENRE = "genres";
+    public static final String GENRE = "genre";
     public static final String LIMIT = "offset";
     public static final String ID = "client_id";
     public static final String BASE_URL  = "https://api.soundcloud.com";
@@ -35,7 +35,7 @@ public class RestUtils {
                 Log.d("MyTAG", "OkHttp: " + message);
             }
         });
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
         OkHttpClient okClient = new OkHttpClient.Builder().addInterceptor(logging).build();
 
         final Retrofit retrofit = new Retrofit.Builder()
