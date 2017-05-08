@@ -31,5 +31,5 @@
     <color name="black_opacity">#D8000000</color>
     <color name="blue_text">#009ACD</color>
     <color name="colorPlayPause">#fd4848</color>
-    <color name="colorPlay">#fd4848</color>
+    <color name="colorPlay">#ff0000</color>
 </resources>

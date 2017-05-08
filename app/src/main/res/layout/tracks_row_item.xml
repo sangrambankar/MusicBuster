@@ -1,55 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="@drawable/tracks_list_item_active"
+    android:layout_marginLeft="@dimen/margin_left_right"
+    android:layout_marginRight="@dimen/margin_left_right"
     android:layout_height="wrap_content">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/track_image"
-            android:layout_width="?attr/actionBarSize"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="10dp"
-            android:src="@mipmap/ic_launcher"
-        />
-
-        <TextView
-            android:id="@+id/track_title"
-            android:maxLines="1"
-            android:textSize="14sp"
-            android:ellipsize="end"
-            android:text="@string/app_name"
-            android:layout_marginLeft="8sp"
-            android:layout_marginRight="5sp"
-            android:gravity="center_vertical"
-            android:layout_width="fill_parent"
+    <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:elevation="3dp"
+            android:padding="5dip"
+            android:background="@color/textColorPrimary"
+            android:layout_marginBottom="10dip"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:textColor="@color/grey_text"
-            android:fontFamily="sans-serif-light"
-            android:layout_toLeftOf="@+id/more_button"
-            android:layout_toRightOf="@+id/track_image"
-        />
+            card_view:cardCornerRadius="4dp">
 
-        <ImageView
-            android:id="@+id/more_button"
-            android:layout_width="40dp"
-            android:layout_height="40dip"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:background="@drawable/more_options_ripple"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_more_vert_black_24dp"
-        />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/track_image"
+                android:layout_width="60dip"
+                android:layout_height="60dip"
+                android:layout_centerVertical="true"
+                android:elevation="3dp"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/colorPrimary"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/nav_home" />
 
-        <View
-            android:id="@+id/divider_rows"
-            style="@style/lineDivider"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@+id/track_image"
-            android:layout_toRightOf="@+id/track_image"
-            android:layout_below="@+id/track_image"
-        />
+            <TextView
+                android:id="@+id/track_title"
+                android:maxLines="1"
+                android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+                android:text="@string/app_name"
+                android:layout_marginLeft="8sp"
+                android:layout_marginRight="5sp"
+                android:gravity="center_vertical"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="@color/colorPrimary"
+                android:layout_toLeftOf="@+id/more_button"
+                android:layout_toRightOf="@+id/track_image"
+            />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/more_button"
+                android:layout_width="40dip"
+                android:layout_height="40dip"
+                android:layout_centerInParent="true"
+                android:onClick="onFabClick"
+                android:scaleType="center"
+                android:src="@drawable/ic_play_arrow_white_24dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:transitionName="@string/transition_name_fab"
+                app:backgroundTint="@color/colorPlay" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 </RelativeLayout>
 

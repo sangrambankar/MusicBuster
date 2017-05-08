@@ -21,7 +21,7 @@
         android:id="@+id/player_cover"
         android:layout_centerInParent="true"
         android:scaleType="centerInside"
-        android:src="@drawable/nav_home"
+        android:src="@drawable/album_cover_daft_punk"
         android:transitionName="@string/transition_name_cover"
         app:layout_heightPercent="35%"
         app:shape="circle"
@@ -43,23 +43,34 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_centerHorizontal="true"
+        android:elevation="3dp"
+        android:padding="10dip"
+        android:layout_below="@+id/appbar"
+        android:layout_margin="10dip"
+        card_view:cardBackgroundColor="@color/colorPrimary"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="4dp">
+
     <LinearLayout
         android:id="@+id/naming"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:orientation="vertical"
-        android:layout_below="@+id/appbar"
-        android:layout_marginTop="10dp"
+        android:padding="5dip"
         android:transitionGroup="true">
 
         <TextView
             android:id="@+id/player_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:transitionName="@string/transition_name_duration"
             android:singleLine="true"
+            android:textColor="@color/textColorPrimary"
             android:ellipsize="marquee"
             android:marqueeRepeatLimit="marquee_forever"
             android:focusable="true"
@@ -77,12 +88,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:textColor="@color/textColorPrimary"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:transitionName="@string/transition_name_duration"
             tools:text="Artist"/>
 
     </LinearLayout>
-
+    </android.support.v7.widget.CardView>
 
 
 
@@ -101,9 +113,9 @@
         android:layout_centerInParent="true"
         android:onClick="onFabClick"
         android:scaleType="center"
-        android:src="@mipmap/ic_av_pause"
+        android:src="@drawable/ic_play_arrow_white_24dp"
         android:transitionName="@string/transition_name_fab"
-        app:backgroundTint="@color/colorPlayPause" />
+        app:backgroundTint="@color/colorPlay" />
 
     <Space
         android:id="@+id/timers_anchor"
@@ -119,6 +131,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/timers_anchor"
         android:layout_toStartOf="@id/timers_anchor"
+        android:textColor="@color/colorPlay"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         android:transitionName="@string/transition_name_time"
         tools:text="02:30"/>
@@ -129,18 +142,29 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/timers_anchor"
         android:layout_toEndOf="@id/timers_anchor"
+        android:textColor="@color/colorPlay"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         android:transitionName="@string/transition_name_duration"
         tools:text="04:30"/>
 
 
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:elevation="3dp"
+        android:padding="10dip"
+        android:layout_margin="10dip"
+        card_view:cardBackgroundColor="@color/colorPrimary"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="4dp">
+
     <LinearLayout
         android:id="@+id/player_controls"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:gravity="center_horizontal"
-        android:background="@color/bgFooterPlayerOpacity"
         android:transitionGroup="true">
 
         <ImageView
@@ -148,29 +172,29 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_repeat_black_48dp"/>
+            android:src="@drawable/ic_repeat_white_24dp"/>
 
         <ImageView
             android:id="@+id/player_rewind"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_fast_rewind_black_48dp"/>
+            android:src="@drawable/ic_fast_rewind_white_24dp"/>
 
         <ImageView
             android:id="@+id/player_forward"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_fast_forward_black_48dp"/>
+            android:src="@drawable/ic_fast_forward_white_24dp"/>
 
         <ImageView
             android:id="@+id/player_shuffle"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_shuffle_black_48dp"/>
+            android:src="@drawable/ic_shuffle_white_24dp"/>
 
     </LinearLayout>
-
+    </android.support.v7.widget.CardView>
 </com.blakky.musicbuster.views.InsetsPercentRelativeLayout>

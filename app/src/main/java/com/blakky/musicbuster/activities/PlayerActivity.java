@@ -30,6 +30,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import ru.egslava.blurredview.BlurredImageView;
 
 import static com.blakky.musicbuster.helpers.Constants.UPDATE_FOOTER;
 
@@ -43,7 +44,7 @@ public class PlayerActivity extends AppCompatActivity{
     MusicCoverView mCoverView;
 
     @BindView(R.id.player_background)
-    ImageView mPlayerbackground;
+    BlurredImageView mPlayerbackground;
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -131,7 +132,7 @@ public class PlayerActivity extends AppCompatActivity{
     public void onRepeat(){
         MusicBusterActivity.mServiceConnection.getService().onRepeatSong();
         if(MusicBusterActivity.mServiceConnection.getService().isRepeatSong()){
-            mRepeatButton.setImageResource(R.mipmap.ic_repeat_black_48dp);
+            mRepeatButton.setImageResource(R.drawable.ic_repeat_white_24dp);
             mShuffleButton.setImageResource(R.mipmap.ic_shuffle_grey600_48dp);
             //SnackbarHelper.showMessage(mRepeatButton, R.string.repeat_on);
         }else{
@@ -144,11 +145,11 @@ public class PlayerActivity extends AppCompatActivity{
     public void onPlay(){
         if(MusicBusterActivity.mServiceConnection.getService().mState == Constants.State.PlAYING){
             MusicBusterActivity.mServiceConnection.getService().pause();
-            mPlay.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.mipmap.ic_av_play_arrow));
+            mPlay.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_play_arrow_white_24dp));
             mCoverView.stop();
         }else{
             MusicBusterActivity.mServiceConnection.getService().start();
-            mPlay.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.mipmap.ic_av_pause));
+            mPlay.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_play_arrow_white_24dp));
             mCoverView.start();
             seekBarProgress();
         }
@@ -208,12 +209,12 @@ public class PlayerActivity extends AppCompatActivity{
         Preconditions.checkNotNull(mCoverView);
         if (!Strings.isNullOrEmpty(urlOrPath)) {
             if(track instanceof STrack){
-                Picasso.with(getApplicationContext()).load(urlOrPath).fit().centerInside().placeholder(R.drawable.nav_home).into(mCoverView);
+                Picasso.with(getApplicationContext()).load(urlOrPath).fit().centerInside().placeholder(R.drawable.album_cover_daft_punk).into(mCoverView);
             }else if(track instanceof DTrack){
                 mCoverView.setImageBitmap(BitmapFactory.decodeFile(urlOrPath));
             }
         } else {
-            mCoverView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.nav_home));
+            mCoverView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.album_cover_daft_punk));
         }
     }
 
@@ -234,19 +235,19 @@ public class PlayerActivity extends AppCompatActivity{
 
     private void setIcons(){
         if( MusicBusterActivity.mServiceConnection.getService().mState == Constants.State.PlAYING){
-            mPlay.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.mipmap.ic_av_pause));
+            mPlay.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_pause_white_24dp));
         }else{
-            mPlay.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.mipmap.ic_av_play_arrow));
+            mPlay.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_play_arrow_white_24dp));
         }
 
         if(MusicBusterActivity.mServiceConnection.getService().isShuffleSong()){
-            mShuffleButton.setImageResource(R.mipmap.ic_shuffle_black_48dp);
+            mShuffleButton.setImageResource(R.drawable.ic_shuffle_white_24dp);
         }else{
             mShuffleButton.setImageResource(R.mipmap.ic_shuffle_grey600_48dp);
         }
 
         if(MusicBusterActivity.mServiceConnection.getService().isRepeatSong()){
-            mRepeatButton.setImageResource(R.mipmap.ic_repeat_black_48dp);
+            mRepeatButton.setImageResource(R.drawable.ic_repeat_white_24dp);
         }else{
             mRepeatButton.setImageResource(R.mipmap.ic_repeat_grey600_48dp);
         }

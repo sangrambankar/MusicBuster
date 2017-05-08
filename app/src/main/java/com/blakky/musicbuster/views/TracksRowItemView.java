@@ -13,6 +13,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -92,9 +93,9 @@ public class TracksRowItemView extends RelativeLayout {
     }
 
     public void setCellValues(final ITrack track, final int position){
-        setTrackImage(track.getImage(), track);
+        setTrackImage(track.getImage(), track, position);
         setTrackTitle(track.getTitle());
-        setOnClickOptions(position, track);
+        //setOnClickOptions(position, track);
     }
 
     public void setTracks(final List<ITrack> tracks){
@@ -103,30 +104,37 @@ public class TracksRowItemView extends RelativeLayout {
         }
     }
 
-    private void setTrackImage(final String urlOrPath, final ITrack track){
+    private void setTrackImage(final String urlOrPath, final ITrack track, int position){
         Preconditions.checkNotNull(mTrackImage);
         if (!Strings.isNullOrEmpty(urlOrPath)) {
             if(track instanceof STrack){
-                Picasso.with(getContext()).load(urlOrPath).placeholder(R.mipmap.ic_launcher).into(mTrackImage);
+                Picasso.with(getContext()).load(urlOrPath).placeholder(R.drawable.nav_home).into(mTrackImage);
             }else if(track instanceof DTrack){
                 mTrackImage.setImageBitmap(BitmapFactory.decodeFile(urlOrPath));
             }
         } else {
-            mTrackImage.setImageDrawable(ContextCompat.getDrawable(getContext(), R.mipmap.ic_launcher));
+            mTrackImage.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.nav_home));
         }
+        mOptionsButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ServiceHelper.startService(new WeakReference<>((Activity) getContext()), position);
+                EventBus.getDefault().post(mTracks);
+            }
+        });
     }
 
     private void setTrackTitle(final String name){
         Preconditions.checkNotNull(mTrackTitle);
         mTrackTitle.setText(name);
+        mTrackTitle.setSelected(true);
     }
 
     private void setOnClickOptions(final int position, final ITrack track){
         Preconditions.checkNotNull(mOptionsButton);
         if(track instanceof STrack){  // Search Tab
             mOptionsButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(),
-                    R.drawable.ic_more_vert_black_24dp, null));
-            mOptionsButton.setColorFilter(R.color.colorPrimary);
+                    R.mipmap.ic_av_play_arrow, null));
 
             mOptionsButton.setOnClickListener(v ->
                     DialogHelper.showListItemsDialog(getContext(),
