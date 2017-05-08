@@ -125,7 +125,8 @@ public class TracksRowItemView extends RelativeLayout {
         Preconditions.checkNotNull(mOptionsButton);
         if(track instanceof STrack){  // Search Tab
             mOptionsButton.setImageDrawable(ResourcesCompat.getDrawable(getResources(),
-                    R.mipmap.ic_navigation_more_vert, null));
+                    R.drawable.ic_more_vert_black_24dp, null));
+            mOptionsButton.setColorFilter(R.color.colorPrimary);
 
             mOptionsButton.setOnClickListener(v ->
                     DialogHelper.showListItemsDialog(getContext(),
