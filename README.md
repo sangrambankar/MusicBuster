@@ -1,16 +1,16 @@
+![Icon](https://raw.githubusercontent.com/sangrambankar/MusicBuster/master/app/src/main/res/mipmap-hdpi/ic_launcher.png)
 # MusicBuster
 A sound streaming application using sloundcloud API.
-![Icon](https://raw.githubusercontent.com/sangrambankar/MusicBuster/master/app/src/main/res/mipmap-hdpi/ic_launcher.png)
 
 # Top Features
-1.Search your favourite songs
-2.Top 50 songs with various genres
+- 1.Search your favourite songs
+- 2.Top 50 songs with various genres
 
 # To Do Features
-New and Hot
-Recent Songs
-Playlists
-Radio Sations
+- New and Hot
+- Recent Songs
+- Playlists
+- Radio Sations
 
 ## Used libraries:
 - [RxJava](https://github.com/ReactiveX/RxAndroid) and [Retrofit](http://square.github.io/retrofit/) libraries to manage Rest Client
