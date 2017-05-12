@@ -1,7 +1,7 @@
 ![Icon](https://raw.githubusercontent.com/sangrambankar/MusicBuster/master/app/src/main/res/mipmap-hdpi/ic_launcher.png)
 # MusicBuster
 A sound streaming application using sloundcloud API.
-![Alt Text][[https://raw.githubusercontent.com/sangrambankar/MusicBuster/MusicBuster.gif | height = 100px]]
+![](https://raw.githubusercontent.com/sangrambankar/MusicBuster/MusicBuster.gif)
 # Top Features
 - Search your favourite songs
 - Top 50 songs with various genres
