@@ -3,8 +3,8 @@
 A sound streaming application using sloundcloud API.
 
 # Top Features
-- 1.Search your favourite songs
-- 2.Top 50 songs with various genres
+- Search your favourite songs
+- Top 50 songs with various genres
 
 # To Do Features
 - New and Hot
