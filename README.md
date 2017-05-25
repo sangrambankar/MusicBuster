@@ -1,6 +1,8 @@
 ![Icon](https://raw.githubusercontent.com/sangrambankar/MusicBuster/master/app/src/main/res/mipmap-hdpi/ic_launcher.png)
 # MusicBuster
-A sound streaming application using sloundcloud API.
+A sound streaming application using sloundcloud API 
+- The goal of the project is to create music application which streams songs online.
+
 - ![](https://raw.githubusercontent.com/sangrambankar/MusicBuster/master/MusicBuster.gif)
 # Top Features
 - Search your favourite songs
